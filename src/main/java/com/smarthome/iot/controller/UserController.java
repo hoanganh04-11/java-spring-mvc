@@ -39,27 +39,33 @@ public class UserController {
         return "admin/user/table-user";
     }
 
-    @RequestMapping("/admin/user/{id}") 
-    public String getUserDetailPage(Model model, @PathVariable long id) {
-        System.out.println("check path id = " + id);
-        model.addAttribute("id", id);
-        return "admin/user/show";
-    }
-
-    @RequestMapping("/admin/user/create")  // Mặc định là GET
-    public String getCreateUserPage(Model model){
+    @RequestMapping("/admin/user/create") // Mặc định là GET
+    public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
-
-    
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
         this.userService.handleSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
+    
+    @RequestMapping("/admin/user/{id}")
+    public String getUserDetailPage(Model model, @PathVariable long id) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("id", id);
+        model.addAttribute("user", user);
+        return "admin/user/show";
+    }
 
+    @RequestMapping("/admin/user/update/{id}")
+    public String getUpdateUserPage(Model model, @PathVariable long id) {
+        model.addAttribute("newUser", new User());
+        return "admin/user/update";
+    }
+
+    
 }
 
 
