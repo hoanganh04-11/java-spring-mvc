@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -21,16 +22,17 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
-    @Email()
+
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @NotEmpty(message = "Email cannot be empty")
     private String email;
 
     @NotNull
-    @Min(2)
+    @Size(min = 2, message="Mật khẩu phải có tối thiểu 2 ký tự")
     private String password;
 
     @NotNull
-    @Min(2)
+    @Size(min = 3, message = "Tên phải có tối thiểu 3 ký tự")
     private String fullName;
     private String address;
     private String phone;

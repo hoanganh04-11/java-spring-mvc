@@ -15,9 +15,13 @@
         </head>
 
         <body class="sb-nav-fixed">
+
             <jsp:include page="../layout/header.jsp" />
+
             <div id="layoutSidenav">
+
                 <jsp:include page="../layout/sidebar.jsp" />
+
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
@@ -43,6 +47,8 @@
                                                     <th>Type</th>
                                                     <th>Threshold</th>
                                                     <th>Status</th>
+                                                    <th>Room</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thread>
                                             <tbody>

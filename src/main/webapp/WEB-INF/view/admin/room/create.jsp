@@ -15,7 +15,7 @@
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-                
+
             </head>
 
             <body class="sb-nav-fixed">
@@ -27,30 +27,31 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Quản lý danh sách cảm biến</h1>
+                                <h1 class="mt-4">Quản lý danh sách phòng</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Sensors</li>
+                                    <li class="breadcrumb-item active">Rooms</li>
                                 </ol>
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Thêm mới một cảm biến</h3>
+                                            <h3>Thêm mới một phòngn</h3>
                                             <hr />
                                             <form:form method="post" action="/admin/sensor/create"
-                                                modelAttribute="newSensor" class="row" 
-                                                enctype="multipart/form-data">
+                                                modelAttribute="newSensor" class="row" enctype="multipart/form-data">
 
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <c:set var="errorName">
-                                                        <form:errors path="name" cssClass="invalid-feedback"/>
+                                                        <form:errors path="name" cssClass="invalid-feedback" />
                                                     </c:set>
                                                     <label class="form-label">Tên cảm biến:</label>
-                                                    <form:input type="text" class="form-control ${not empty errorName ? 'is-invalid' : ''}" path="name"/>
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty errorName ? 'is-invalid' : ''}"
+                                                        path="name" />
                                                     ${errorName}
                                                 </div>
 
-                                                
+
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label class="form-label">Loại cảm biến:</label>
                                                     <form:select class="form-select" path="type" required="required">
@@ -70,7 +71,7 @@
                                                     </form:select>
                                                 </div>
 
-                                                
+
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label class="form-label">Phòng:</label>
                                                     <form:select class="form-select" path="room.id" required="required">
@@ -86,10 +87,12 @@
                                                         <form:errors path="threshold" cssClass="invalid-feedback" />
                                                     </c:set>
                                                     <label class="form-label">Ngưỡng cảnh báo:</label>
-                                                    <form:input type="number" class="form-control ${not empty errorThreshold ? 'is-invalid' : ''}" path="threshold" />
+                                                    <form:input type="number"
+                                                        class="form-control ${not empty errorThreshold ? 'is-invalid' : ''}"
+                                                        path="threshold" />
                                                     ${errorThreshold}
                                                 </div>
-                                                
+
                                                 <div class="col-12 mb-5">
                                                     <button type="submit" class="btn btn-primary">Tạo mới</button>
                                                 </div>

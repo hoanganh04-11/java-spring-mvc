@@ -20,4 +20,10 @@ public class SensorService {
     public List<Sensor> getAllSensor(){
         return this.sensorRepository.findAll();
     }
+
+    public Sensor createSensor(Sensor sensor){
+        return this.sensorRepository.save(sensor);
+    }
+
+    
 }

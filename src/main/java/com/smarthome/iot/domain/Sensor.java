@@ -7,6 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "sensors")
@@ -15,9 +18,24 @@ public class Sensor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
+    @NotNull
+    @NotEmpty(message = "Tên không được để trống")
     private String name;
+
+
+    @NotNull
+    @NotEmpty(message = "Loại cảm biến không được để trống")
     private String type;
+
+    
+    @NotNull
+    @Min(value = 1, message = "Ngưỡng cảnh báo phải lớn hơn hoặc bằng 1")
     private double threshold;
+
+
+    @NotNull
+    @NotEmpty(message = "Trạng thái không được để trống")
     private String status;
     // roomId
 
@@ -55,10 +73,17 @@ public class Sensor {
     public void setStatus(String status) {
         this.status = status;
     }
+    
     @Override
     public String toString() {
         return "Sensor [id=" + id + ", name=" + name + ", type=" + type + ", threshold=" + threshold + ", status="
                 + status + ", room=" + room + "]";
+    }
+    public Room getRoom() {
+        return room;
+    }
+    public void setRoom(Room room) {
+        this.room = room;
     }
     
     

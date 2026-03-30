@@ -51,14 +51,17 @@ public class UserController {
 
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") @Valid User user,BindingResult bindingResult,
+            @ModelAttribute("newUser") @Valid User user,BindingResult newUserBindingResult,
             @RequestParam(value = "File", required = false) MultipartFile file) {
 
-        List<FieldError> errors = bindingResult.getFieldErrors(); 
+        List<FieldError> errors = newUserBindingResult.getFieldErrors(); 
         for (FieldError error : errors ) { 
-            System.out.println (error.getObjectName() + " - " + error.getDefaultMessage()); 
+            System.out.println (error.getField() + " - " + error.getDefaultMessage()); 
         }
         //Validate 
+        if(newUserBindingResult.hasErrors()){
+            return "/admin/user/create";
+        }
                 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
@@ -86,12 +89,12 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String postUpdateUser(Model model, @ModelAttribute("newUser") User hoidanit) {
-        User currentUser = this.userService.getUserById(hoidanit.getId());
+    public String postUpdateUser(Model model, @ModelAttribute("newUser") User user) {
+        User currentUser = this.userService.getUserById(user.getId());
         if (currentUser != null) {
-            currentUser.setAddress(hoidanit.getAddress());
-            currentUser.setFullName(hoidanit.getFullName());
-            currentUser.setPhone(hoidanit.getPhone());
+            currentUser.setAddress(user.getAddress());
+            currentUser.setFullName(user.getFullName());
+            currentUser.setPhone(user.getPhone());
 
             this.userService.handleSaveUser(currentUser);
         }
@@ -108,8 +111,8 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/delete")
-    public String postDeleteUser(Model model, @ModelAttribute("newUser") User hoidanit) {
-        this.userService.deleteAUser(hoidanit.getId());
+    public String postDeleteUser(Model model, @ModelAttribute("newUser") User user) {
+        this.userService.deleteAUser(user.getId());
         return "redirect:/admin/user";
     }
 }

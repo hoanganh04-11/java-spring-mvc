@@ -15,19 +15,61 @@
         </head>
 
         <body class="sb-nav-fixed">
+
             <jsp:include page="../layout/header.jsp" />
+
             <div id="layoutSidenav">
+
                 <jsp:include page="../layout/sidebar.jsp" />
+
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage Rooms</h1>
+                            <h1 class="mt-4">Manage Room</h1>
                             <ol class="breadcrumb mb-4">
                                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Rooms</li>
+                                <li class="breadcrumb-item active">Room</li>
                             </ol>
-                            <div>
-                                table room
+                            <div class="container mt-5">
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <div class="d-flex justify-content-between">
+                                            <h3>Table Room</h3>
+                                            <a href="room/create" class="btn btn-primary">Create Room</a>
+                                        </div>
+
+                                        <hr />
+                                        <table class="table table-bordered table-hover">
+                                            <thread>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thread>
+                                            <tbody>
+                                                <c:forEach var="room" items="${rooms}">
+                                                    <tr>
+                                                        <th>${sensor.id}</th>
+                                                        <td>${sensor.name}</td>
+                                                        <td>
+                                                            <a href="/admin/room/${sensor.id}"
+                                                                class="btn btn-success">View</a>
+                                                            <a href="/admin/room/update/${sensor.id}"
+                                                                class="btn btn-warning">Update</a>
+                                                            <a href="/admin/room/delete/${sensor.id}"
+                                                                class="btn btn-danger">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </main>
