@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.smarthome.iot.domain.Role;
 import com.smarthome.iot.domain.User;
+import com.smarthome.iot.domain.dto.RegisterDTO;
 import com.smarthome.iot.repository.RoleRepository;
 import com.smarthome.iot.repository.UserRepository;
 
@@ -36,7 +37,6 @@ public class UserService {
 
     public User handleSaveUser(User user) {
         User eric = this.userRepository.save(user);
-        System.out.println(eric);
         return eric;
     }
 
@@ -46,5 +46,13 @@ public class UserService {
 
     public Role getRoleByName(String name){
         return this.roleRepository.findByName(name);
+    }
+
+    public User registerDTOtoUser(RegisterDTO registerDTO){
+        User user = new User();
+        user.setFullName(registerDTO.getFirstName() + " " +registerDTO.getLastName());
+        user.setEmail(registerDTO.getEmail());
+        user.setPassword(registerDTO.getPassword());
+        return user;
     }
 }
