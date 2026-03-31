@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.smarthome.iot.domain.Room;
-import com.smarthome.iot.domain.Sensor;
 import com.smarthome.iot.service.RoomService;
-import com.smarthome.iot.service.SensorService;
 
 @Controller
 public class RoomController {

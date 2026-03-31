@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ItemSensorController {
     
 
-    @GetMapping("sensor/{id}")
+    @GetMapping("item/sensor/{id}")
     public String getClientSensorPage(Model model, @PathVariable Long id){
         return "client/sensor/detail";
     }
