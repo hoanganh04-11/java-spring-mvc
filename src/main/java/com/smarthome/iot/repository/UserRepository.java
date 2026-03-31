@@ -13,10 +13,12 @@ import com.smarthome.iot.domain.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User save(User user);
-    List<User> findByEmail(String email);
+
+    List<User> findOneByEmail(String email);
 
     List<User> findAll();
 
     public boolean existsByEmail(String email);
 
+    User findByEmail(String email);
 }
