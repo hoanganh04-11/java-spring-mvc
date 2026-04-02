@@ -10,61 +10,54 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="" />
                 <meta name="author" content="" />
-                <title>Thêm phòng - IoT Smart Home</title>
+                <title>Thiết bị - Smart Home</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
             </head>
 
             <body class="sb-nav-fixed">
                 <!-- header -->
                 <jsp:include page="../layout/header.jsp" />
+
                 <div id="layoutSidenav">
                     <!-- sidebar -->
                     <jsp:include page="../layout/sidebar.jsp" />
+
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Quản lý danh sách phòng</h1>
+                                <h1 class="mt-4">Quản lý thiết bị</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active">Phòng</li>
+                                    <li class="breadcrumb-item active">Thiết bị</li>
                                 </ol>
                                 <div class="container mt-5">
                                     <div class="row">
-                                        <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Thêm mới một phòng</h3>
+                                        <div class="col-12 mx-auto">
+                                            <div class="d-flex justify-content-between">
+                                                <h3>Thông tin thiết bị với id: ${id}</h3>
+
+                                            </div>
+
                                             <hr />
-                                            <form:form method="post" action="/admin/room/create"
-                                                modelAttribute="newRoom" class="row" enctype="multipart/form-data">
-
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <c:set var="errorName">
-                                                        <form:errors path="name" cssClass="invalid-feedback" />
-                                                    </c:set>
-                                                    <label class="form-label">Tên phòng:</label>
-                                                    <form:input type="text"
-                                                        class="form-control ${not empty errorName ? 'is-invalid' : ''}"
-                                                        path="name" />
-                                                    ${errorName}
+                                            <div class="card" style="width: 60%;">
+                                                <div class="card-header">
+                                                    Thông tin thiết bị
                                                 </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">ID: ${device.id}</li>
+                                                    <li class="list-group-item">Tên thiết bị: ${device.name}</li>
+                                                    <li class="list-group-item">Trạng thái: ${device.status}</li>
+                                                </ul>
+                                            </div>
+                                            <a href="/admin/device" class="btn btn-success">Quay lại</a>
 
-
-                                                
-
-
-                                                <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-primary">Tạo mới</button>
-                                                </div>
-
-                                            </form:form>
                                         </div>
 
                                     </div>
 
                                 </div>
+
                             </div>
                         </main>
                         <!-- footer -->

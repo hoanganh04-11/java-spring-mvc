@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
             <meta name="author" content="" />
-            <title>Dashboard - Smart Home</title>
+            <title>Trang chủ - Smart Home</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -25,17 +25,17 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage Device</h1>
+                            <h1 class="mt-4">Quản lý thiết bị</h1>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Device</li>
+                                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                <li class="breadcrumb-item active">Thiết bị</li>
                             </ol>
                             <div class="container mt-5">
                                 <div class="row">
                                     <div class="col-12 mx-auto">
                                         <div class="d-flex justify-content-between">
-                                            <h3>Table Device</h3>
-                                            <a href="device/create" class="btn btn-primary">Create Device</a>
+                                            <h3>Danh sách thiết bị</h3>
+                                            <a href="device/create" class="btn btn-primary">Tạo thiết bị</a>
                                         </div>
 
                                         <hr />
@@ -43,8 +43,8 @@
                                             <thread>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Status</th>
+                                                    <th>Tên</th>
+                                                    <th>Trạng thái</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thread>
@@ -56,11 +56,11 @@
                                                         <td>${device.status}</td>
                                                         <td>
                                                             <a href="/admin/device/${device.id}"
-                                                                class="btn btn-success">View</a>
+                                                                class="btn btn-success">Xem chi tiết</a>
                                                             <a href="/admin/device/update/${device.id}"
-                                                                class="btn btn-warning">Update</a>
+                                                                class="btn btn-warning">Cập nhật</a>
                                                             <a href="/admin/device/delete/${device.id}"
-                                                                class="btn btn-danger">Delete</a>
+                                                                class="btn btn-danger">Xóa</a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

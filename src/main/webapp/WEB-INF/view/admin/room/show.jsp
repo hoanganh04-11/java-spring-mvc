@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
             <meta name="author" content="" />
-            <title>Dashboard - Smart Home</title>
+            <title>Trang chủ - Smart Home</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -25,17 +25,17 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage Room</h1>
+                            <h1 class="mt-4">Quản lý phòng</h1>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Room</li>
+                                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                <li class="breadcrumb-item active">Phòng</li>
                             </ol>
                             <div class="container mt-5">
                                 <div class="row">
                                     <div class="col-12 mx-auto">
                                         <div class="d-flex justify-content-between">
-                                            <h3>Table Room</h3>
-                                            <a href="room/create" class="btn btn-primary">Create Room</a>
+                                            <h3>Danh sách phòng</h3>
+                                            <a href="room/create" class="btn btn-primary">Tạo phòng</a>
                                         </div>
 
                                         <hr />
@@ -43,7 +43,7 @@
                                             <thread>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Name</th>
+                                                    <th>Tên phòng</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thread>
@@ -54,11 +54,11 @@
                                                         <td>${room.name}</td>
                                                         <td>
                                                             <a href="/admin/room/${room.id}"
-                                                                class="btn btn-success">View</a>
+                                                                class="btn btn-success">Xem chi tiết</a>
                                                             <a href="/admin/room/update/${room.id}"
-                                                                class="btn btn-warning">Update</a>
+                                                                class="btn btn-warning">Cập nhật</a>
                                                             <a href="/admin/room/delete/${room.id}"
-                                                                class="btn btn-danger">Delete</a>
+                                                                class="btn btn-danger">Xóa</a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

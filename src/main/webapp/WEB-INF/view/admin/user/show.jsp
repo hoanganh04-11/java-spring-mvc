@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
             <meta name="author" content="" />
-            <title>Dashboard - Smart Home</title>
+            <title>Trang chủ - Smart Home</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -21,17 +21,17 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage Users</h1>
+                            <h1 class="mt-4">Quản lý người dùng</h1>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Users</li>
+                                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                <li class="breadcrumb-item active">Người dùng</li>
                             </ol>
                             <div class="container mt-5">
                                         <div class="row">
                                             <div class="col-12 mx-auto">
                                                 <div class="d-flex justify-content-between">
-                                                    <h3>Table User</h3>
-                                                    <a href="user/create" class="btn btn-primary">Create User</a>
+                                                    <h3>Danh sách người dùng</h3>
+                                                    <a href="user/create" class="btn btn-primary">Tạo người dùng</a>
                                                 </div>
                                     
                                                 <hr />
@@ -40,8 +40,8 @@
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Email</th>
-                                                            <th>Full Name</th>
-                                                            <th>Role</th>
+                                                            <th>Họ và tên</th>
+                                                            <th>Vai trò</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thread>
@@ -53,9 +53,9 @@
                                                                 <td>${user.fullName}</td>
                                                                 <td>${user.role.name}</td>
                                                                 <td>
-                                                                    <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
-                                                                    <a href="/admin/user/update/${user.id}" class="btn btn-warning">Update</a>
-                                                                    <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>
+                                                                    <a href="/admin/user/${user.id}" class="btn btn-success">Xem chi tiết</a>
+                                                                    <a href="/admin/user/update/${user.id}" class="btn btn-warning">Cập nhật</a>
+                                                                    <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Xóa</a>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>

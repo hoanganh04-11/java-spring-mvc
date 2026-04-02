@@ -27,4 +27,13 @@ public class RoomService {
     public Room createRoom(Room room){
         return this.roomRepository.save(room);
     }
+
+    public Room handleSaveRoom(Room room){
+        Room newRoom = this.roomRepository.save(room);
+        return newRoom;
+    }
+
+    public void deleteARoom(Long id){
+        this.roomRepository.deleteById(id);
+    }
 }

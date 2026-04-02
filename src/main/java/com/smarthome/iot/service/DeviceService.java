@@ -27,4 +27,17 @@ public class DeviceService {
     public Device createDevice(Device device){
         return this.deviceRepository.save(device);
     }
+
+    public Device findById(Long id){
+        return this.deviceRepository.findById(id).orElse(null);
+    }
+
+    public Device handleSaveDevice(Device device){
+        Device newDevice = this.deviceRepository.save(device);
+        return newDevice;
+    }
+
+    public void deleteADevice(Long id){
+        this.deviceRepository.deleteById(id);
+    }
 }

@@ -10,64 +10,62 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="" />
                 <meta name="author" content="" />
-                <title>Thêm phòng - IoT Smart Home</title>
+                <title>Cập nhật thiết bị - Smart Home</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
             </head>
 
             <body class="sb-nav-fixed">
-                <!-- header -->
+
                 <jsp:include page="../layout/header.jsp" />
+
                 <div id="layoutSidenav">
-                    <!-- sidebar -->
+
                     <jsp:include page="../layout/sidebar.jsp" />
+
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Quản lý danh sách phòng</h1>
+                                <h1 class="mt-4">Quản lý thiết bị</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active">Phòng</li>
+                                    <li class="breadcrumb-item active">Thiết bị</li>
                                 </ol>
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Thêm mới một phòng</h3>
+                                            <h3>Cập nhật thiết bị</h3>
                                             <hr />
-                                            <form:form method="post" action="/admin/room/create"
-                                                modelAttribute="newRoom" class="row" enctype="multipart/form-data">
+                                            <form:form method="post" action="/admin/device/update"
+                                                modelAttribute="newDevice">
 
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <c:set var="errorName">
-                                                        <form:errors path="name" cssClass="invalid-feedback" />
-                                                    </c:set>
-                                                    <label class="form-label">Tên phòng:</label>
-                                                    <form:input type="text"
-                                                        class="form-control ${not empty errorName ? 'is-invalid' : ''}"
-                                                        path="name" />
-                                                    ${errorName}
+                                                <div class="mb-3" style="display: none;">
+                                                    <label class="form-label">ID:</label>
+                                                    <form:input type="text" class="form-control" path="id" />
                                                 </div>
 
 
-                                                
-
-
-                                                <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tên thiết bị:</label>
+                                                    <form:input type="text" class="form-control" path="name" />
                                                 </div>
 
+                                                <div class="mb-3">
+                                                    <label class="form-label">Trạng thái:</label>
+                                                    <form:input type="text" class="form-control" path="status" />
+                                                </div>
+
+                                                <button type="submit" class="btn btn-warning">Cập nhật</button>
                                             </form:form>
                                         </div>
 
                                     </div>
 
                                 </div>
+
                             </div>
                         </main>
-                        <!-- footer -->
+
                         <jsp:include page="../layout/footer.jsp" />
 
                     </div>
