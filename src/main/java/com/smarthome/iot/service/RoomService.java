@@ -36,4 +36,8 @@ public class RoomService {
     public void deleteARoom(Long id){
         this.roomRepository.deleteById(id);
     }
+
+    public long countRoom(){
+        return this.roomRepository.count();
+    }
 }

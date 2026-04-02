@@ -8,4 +8,5 @@ import com.smarthome.iot.domain.Device;
 @Repository
 public interface DeviceRepository extends JpaRepository<Device, Long> {
 
+    long countByStatus(String status);
 } 

@@ -40,4 +40,12 @@ public class DeviceService {
     public void deleteADevice(Long id){
         this.deviceRepository.deleteById(id);
     }
+
+    public long countDevice(){
+        return this.deviceRepository.count();
+    }
+
+    public long countDeviceByStatus(String status){
+        return this.deviceRepository.countByStatus(status);
+    }
 }

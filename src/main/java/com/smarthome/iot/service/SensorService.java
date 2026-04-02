@@ -37,4 +37,8 @@ public class SensorService {
     public void deleteASensor(Long id){
         this.sensorRepository.deleteById(id);
     }
+
+    public long countSensor(){
+        return this.sensorRepository.count();
+    }
 }
