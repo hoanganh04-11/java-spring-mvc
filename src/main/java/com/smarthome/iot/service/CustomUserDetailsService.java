@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.smarthome.iot.domain.User user = this.userService.getUserByEmail(username);
         if(user == null){
-            throw new UsernameNotFoundException("user not found");
+            throw new UsernameNotFoundException("không tìm thấy thông tin tài khoản");
         }
 
 

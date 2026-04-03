@@ -48,4 +48,38 @@ public class DeviceService {
     public long countDeviceByStatus(String status){
         return this.deviceRepository.countByStatus(status);
     }
+
+    public List<Device> findByRoomId(Long roomId) {
+        return this.deviceRepository.findByRoomId(roomId);
+    }
+
+    /**
+     * Toggle trạng thái ON/OFF của thiết bị.
+     * Sau khi đổi trạng thái trong DB, publish lệnh qua MQTT để ESP32 thực thi.
+     */
+    public Device toggleStatus(Long id) {
+        Device device = this.deviceRepository.findById(id).orElse(null);
+        if (device == null)
+            return null;
+
+        String newStatus = "ON".equals(device.getStatus()) ? "OFF" : "ON";
+        device.setStatus(newStatus);
+        Device saved = this.deviceRepository.save(device);
+
+        // Publish lệnh qua MQTT broker → ESP32 nhận và bật/tắt relay
+        // this.mqttService.publishCommand(id, newStatus);
+
+        return saved;
+    }
+
+    /**
+     * Cập nhật trạng thái từ phản hồi MQTT của ESP32.
+     */
+    public void updateStatus(Long id, String status) {
+        Device device = this.deviceRepository.findById(id).orElse(null);
+        if (device != null) {
+            device.setStatus(status);
+            this.deviceRepository.save(device);
+        }
+    }
 }

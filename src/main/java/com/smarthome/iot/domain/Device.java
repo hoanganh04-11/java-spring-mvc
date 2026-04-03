@@ -41,6 +41,12 @@ public class Device {
     public void setStatus(String status) {
         this.status = status;
     }
+    public Room getRoom() {
+        return room;
+    }
+    public void setRoom(Room room) {
+        this.room = room;
+    }
     @Override
     public String toString() {
         return "Device [id=" + id + ", name=" + name + ", status=" + status + "]";

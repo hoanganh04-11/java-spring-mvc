@@ -80,6 +80,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card text-white shadow stat-card" style="background: linear-gradient(135deg,#9c27b0,#4a148c)">
+                                <div class="card-body d-flex align-items-center">
+                                    <i class="bi bi-people stat-icon me-3"></i>
+                                    <div>
+                                        <h2 class="mb-0">${countUsers}</h2>
+                                        <span>Người dùng</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-0">
+                                    <a href="/admin/user" class="text-white text-decoration-none small">
+                                        Quản lý người dùng <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Hàng thiết bị bật/tắt -->
@@ -114,6 +131,25 @@
                             </div>
                         </div>
                         
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card shadow-sm">
+                        <div class="card-header"><i class="bi bi-lightning"></i> Thao tác nhanh</div>
+                        <div class="card-body d-flex flex-wrap gap-2">
+                            <a href="/admin/room/create" class="btn btn-outline-primary">
+                                <i class="bi bi-plus-circle"></i> Thêm phòng
+                            </a>
+                            <a href="/admin/sensor/create" class="btn btn-outline-success">
+                                <i class="bi bi-plus-circle"></i> Thêm cảm biến
+                            </a>
+                            <a href="/admin/device/create" class="btn btn-outline-danger">
+                                <i class="bi bi-plus-circle"></i> Thêm thiết bị
+                            </a>
+                            <a href="/admin/user/create" class="btn btn-outline-secondary">
+                                <i class="bi bi-person-plus"></i> Thêm người dùng
+                            </a>
+                        </div>
                     </div>
 
                 </div>

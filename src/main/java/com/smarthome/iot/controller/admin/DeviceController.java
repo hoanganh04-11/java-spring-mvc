@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.smarthome.iot.domain.Device;
 import com.smarthome.iot.service.DeviceService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller

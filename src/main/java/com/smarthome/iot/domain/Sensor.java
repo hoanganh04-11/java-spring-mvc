@@ -1,12 +1,19 @@
 package com.smarthome.iot.domain;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -42,6 +49,53 @@ public class Sensor {
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
+
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+
+    @OneToMany(mappedBy = "sensor")
+    private List<Alert> alerts;
+
+    @Transient
+    private List<SensorData> latestData;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+    public List<Alert> getAlerts() {
+        return alerts;
+    }
+
+
+    public void setAlerts(List<Alert> alerts) {
+        this.alerts = alerts;
+    }
+
+
+    public List<SensorData> getLatestData() {
+        return latestData;
+    }
+
+
+    public void setLatestData(List<SensorData> latestData) {
+        this.latestData = latestData;
+    }
+
 
     public String getType() {
         return type;
