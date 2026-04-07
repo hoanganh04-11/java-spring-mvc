@@ -1,4 +1,4 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <jsp:include page="/WEB-INF/view/client/layout/header.jsp">
@@ -42,7 +42,7 @@
                                     <small class="text-muted text-uppercase">Thiết bị</small>
                                 </div>
                                 <c:choose>
-                                    <c:when test="${not empty pageContext.request.userPrincipal}">
+                                    <c:when test="${isLoggedIn}">
                                         <button class="toggle-switch ${device.status == 'ON' ? 'on' : 'off'}"
                                                 id="toggle-${device.id}"
                                                 data-device-id="${device.id}"
@@ -72,7 +72,7 @@
     </c:if>
 </div>
 
-<c:if test="${empty pageContext.request.userPrincipal}">
+<c:if test="${not isLoggedIn}">
     <div class="container mt-2">
         <div class="alert alert-warning border-0 shadow-sm rounded-4 text-center">
             Bạn đang ở chế độ khách, chỉ có quyền xem thông tin. Vui lòng <a href="/login">đăng nhập</a> để điều khiển thiết bị.

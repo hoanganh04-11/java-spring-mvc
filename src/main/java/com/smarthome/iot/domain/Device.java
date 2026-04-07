@@ -51,7 +51,4 @@ public class Device {
     public String toString() {
         return "Device [id=" + id + ", name=" + name + ", status=" + status + "]";
     }
-
-    
-    
 }

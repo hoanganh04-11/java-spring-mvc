@@ -52,6 +52,15 @@ public class SensorDataService {
     public List<SensorData> getAllDataBySensor(Long sensorId) {
         return this.sensorDataRepository.findBySensorIdOrderByRecordedAtDesc(sensorId);
     }
+    /**
+     * Lấy 10 bản ghi mới nhất và đánh dấu bản ghi nào vượt ngưỡng cảnh báo.
+     * Logic nghiệp vụ này thuộc về Service, không để View tự tính.
+     */
+    public List<SensorData> getLatestDataWithThreshold(Long sensorId, double threshold) {
+        List<SensorData> dataList = getLatestData(sensorId);
+        dataList.forEach(d -> d.setAboveThreshold(d.getValue() != null && d.getValue() > threshold));
+        return dataList;
+    }
 
 
 }

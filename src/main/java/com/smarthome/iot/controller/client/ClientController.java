@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.smarthome.iot.domain.Device;
 import com.smarthome.iot.domain.Room;
@@ -45,13 +46,15 @@ public class ClientController {
     }
 
     @GetMapping("/client/room/{id}")
-    public String getRoomDetail(Model model, @PathVariable Long id) {
+    public String getRoomDetail(Model model, @PathVariable Long id, Authentication authentication) {
         Room room = this.roomService.findById(id);
         model.addAttribute("room", room);
 
         if (room != null && room.getSensors() != null) {
             for (Sensor sensor : room.getSensors()) {
-                List<SensorData> latestData = this.sensorDataService.getLatestData(sensor.getId());
+                // Service đánh dấu sẵn data nào vượt ngưỡng → View chỉ cần đọc
+                List<SensorData> latestData = this.sensorDataService
+                        .getLatestDataWithThreshold(sensor.getId(), sensor.getThreshold());
                 sensor.setLatestData(latestData);
             }
         }
@@ -59,7 +62,13 @@ public class ClientController {
         if (room != null) {
             List<Device> devices = this.deviceService.findByRoomId(id);
             model.addAttribute("devices", devices);
+            model.addAttribute("deviceCount", devices.size());
+        } else {
+            model.addAttribute("deviceCount", 0);
         }
+
+        boolean isLoggedIn = authentication != null && authentication.isAuthenticated();
+        model.addAttribute("isLoggedIn", isLoggedIn);
 
         return "client/room/detail";
     }
@@ -67,9 +76,15 @@ public class ClientController {
     @GetMapping("/client/sensor/{id}")
     public String getSensorDetail(Model model, @PathVariable Long id) {
         Sensor sensor = this.sensorService.findById(id);
-        List<SensorData> sensorDataList = this.sensorDataService.getLatestData(id);
+        // Service đánh dấu sẵn data nào vượt ngưỡng → View chỉ cần đọc
+        List<SensorData> sensorDataList = (sensor != null)
+                ? this.sensorDataService.getLatestDataWithThreshold(id, sensor.getThreshold())
+                : this.sensorDataService.getLatestData(id);
+
         model.addAttribute("sensor", sensor);
         model.addAttribute("dataList", sensorDataList);
+        // Truyền đếm sẵn → View không cần gọi .size()
+        model.addAttribute("dataCount", sensorDataList.size());
         return "client/sensor/detail";
     }
 
@@ -93,11 +108,15 @@ public class ClientController {
     }
 
     @GetMapping("/client/device")
-    public String getDeviceList(Model model) {
+    public String getDeviceList(Model model, Authentication authentication) {
         List<Device> devices = this.deviceService.getAllDevice();
         List<Room> rooms = this.roomService.getAllRoom();
+
+        boolean isLoggedIn = authentication != null && authentication.isAuthenticated();
+
         model.addAttribute("devices", devices);
         model.addAttribute("rooms", rooms);
+        model.addAttribute("isLoggedIn", isLoggedIn);
         return "client/device/show";
     }
 

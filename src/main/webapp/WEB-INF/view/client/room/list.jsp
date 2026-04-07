@@ -38,7 +38,7 @@
 
                                     <div class="d-flex justify-content-center gap-2 mt-2">
                                         <c:choose>
-                                            <c:when test="${room.sensors != null && room.sensors.size() > 0}">
+                                            <c:when test="${not empty room.sensors}">
                                                 <span
                                                     class="badge bg-success-light text-success rounded-pill px-3 py-2">
                                                     <i class="bi bi-cpu me-1"></i> ${room.sensors.size()} cảm biến
@@ -50,7 +50,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                         <c:choose>
-                                            <c:when test="${room.devices != null && room.devices.size() > 0}">
+                                            <c:when test="${not empty room.devices}">
                                                 <span
                                                     class="badge bg-primary-light text-primary rounded-pill px-3 py-2">
                                                     <i class="bi bi-plug me-1"></i> ${room.devices.size()} thiết bị

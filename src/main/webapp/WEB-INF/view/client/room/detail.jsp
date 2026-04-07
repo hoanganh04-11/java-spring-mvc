@@ -24,7 +24,7 @@
             <h2 class="h4 fw-bold mb-0">
                 <i class="bi bi-plug-fill text-primary me-2"></i> Thiết bị điều khiển
             </h2>
-            <span class="badge bg-primary rounded-pill px-3 py-2">${devices != null ? devices.size() : 0} thiết bị</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2">${deviceCount} thiết bị</span>
         </div>
 
         <c:if test="${empty devices}">
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <c:choose>
-                                    <c:when test="${not empty pageContext.request.userPrincipal}">
+                                    <c:when test="${isLoggedIn}">
                                         <button class="toggle-switch ${device.status == 'ON' ? 'on' : 'off'}"
                                             id="room-toggle-${device.id}" data-device-id="${device.id}"
                                             onclick="handleToggle(this)">
@@ -74,7 +74,7 @@
         </c:if>
     </div>
 
-    <c:if test="${empty pageContext.request.userPrincipal}">
+    <c:if test="${not isLoggedIn}">
         <div class="alert alert-warning border-0 shadow-sm rounded-4 text-center mb-5">
             Bạn đang ở chế độ khách, chỉ có quyền xem thông tin. Vui lòng <a href="/login">đăng nhập</a> để điều khiển thiết bị.
         </div>
@@ -87,14 +87,14 @@
             </h2>
         </div>
 
-        <c:if test="${room.sensors == null || room.sensors.size() == 0}">
+        <c:if test="${empty room.sensors}">
             <div class="alert alert-light border-0 shadow-sm rounded-4 p-4 text-center">
                 <i class="bi bi-cpu fs-1 text-muted mb-3 d-block"></i>
                 <p class="text-muted mb-0">Phòng này chưa có các mô-đun cảm biến đo lường.</p>
             </div>
         </c:if>
 
-        <c:if test="${room.sensors != null && room.sensors.size() > 0}">
+        <c:if test="${not empty room.sensors}">
             <div class="row g-4">
                 <c:forEach var="sensor" items="${room.sensors}">
                     <div class="col-lg-6">
@@ -140,7 +140,7 @@
                                                         <tr>
                                                             <td class="fw-bold text-dark fs-5">
                                                                 ${data.value}
-                                                                <c:if test="${sensor.threshold != null && data.value > sensor.threshold}">
+                                                                <c:if test="${data.aboveThreshold}">
                                                                     <span class="badge bg-danger ms-1" title="Vuot nguong">!</span>
                                                                 </c:if>
                                                             </td>
