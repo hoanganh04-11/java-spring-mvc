@@ -23,7 +23,8 @@ public class HomePageController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
-    public HomePageController(UserService userService, PasswordEncoder passwordEncoder){
+    public HomePageController(UserService userService, 
+                            PasswordEncoder passwordEncoder){
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -39,14 +40,10 @@ public class HomePageController {
         return "client/auth/register";
     }
 
-    @GetMapping("/login")
-    public String getLoginPage(Model model) {
-        model.addAttribute("registerUser", new RegisterDTO());
-        return "client/auth/login";
-    }
 
     @PostMapping("/register")
-    public String handleRegister(@ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
+    public String handleRegister(@ModelAttribute("registerUser") 
+                                @Valid RegisterDTO registerDTO,
                                 BindingResult bindingResult){
 
         //validate
@@ -64,10 +61,14 @@ public class HomePageController {
         return "redirect:/login";
     }
 
+    @GetMapping("/login")
+    public String getLoginPage(Model model) {
+        model.addAttribute("registerUser", new RegisterDTO());
+        return "client/auth/login";
+    }
 
     @GetMapping("/access-deny")
     public String getDenyPage(Model model) {
-
         return "client/auth/deny";
     }
 }
