@@ -322,14 +322,12 @@ refactor: tách service xử lý MQTT
 
 ## 👥 Thành viên nhóm
 
-| Họ tên | Vai trò | Công việc |
+| Họ tên | Mã Sinh Viên | Vai trò |
 |---|---|---|
-| Nguyễn Văn A | Backend | Spring Boot, Security, MQTT |
-| Trần Văn B | Frontend | JSP / Bootstrap |
-| Lê Văn C | IoT Firmware | STM32, ESP32, LoRa |
-| Phạm Văn D | Database | Thiết kế CSDL |
+| Nguyễn Tiến Quân | B22DCVT425 | Trưởng nhóm |
+| Hoàng Trung Anh | B22DCVT017 | Thành viên |
+| Nguyễn Khánh Nam | B22DCVT361 | Thành viên |
 
-> Bạn thay lại tên thật của nhóm vào đây.
 
 ---
 
