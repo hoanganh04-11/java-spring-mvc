@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smarthome.iot.domain.SensorData;
 import com.smarthome.iot.service.DeviceService;
 import com.smarthome.iot.service.SensorDataService;
 
@@ -169,18 +170,67 @@ public class MqttConfig {
             return;
         }
 
+        SensorDataService sensorDataService = ctx.getBean(SensorDataService.class);
+
         if ("data".equals(parts[3])) {
-            SensorDataService sensorDataService = ctx.getBean(SensorDataService.class);
             parseSensorPayload(sensorId, payload, sensorDataService);
             return;
         }
 
         if ("alert".equals(parts[3])) {
-            System.err.println(">>> MQTT: Sensor alert id=" + sensorId + " payload=" + payload);
+            parseAlertPayload(sensorId, payload, sensorDataService);
             return;
         }
 
         System.err.println(">>> MQTT: Unhandled sensor topic: " + fullTopic);
+    }
+
+    private void parseAlertPayload(Long sensorId, String payload, SensorDataService service) {
+        try {
+            boolean isAlert = true;
+            String message = "Cảnh báo vượt ngưỡng";
+            Double value = null;
+
+            if (payload.startsWith("{")) {
+                Map<String, Object> data = OBJECT_MAPPER.readValue(payload, new TypeReference<Map<String, Object>>() {
+                });
+                Object msgObj = data.get("message");
+                if (msgObj != null) {
+                    message = msgObj.toString();
+                }
+                Object valueObj = data.get("value");
+                if (valueObj != null) {
+                    value = parseDouble(valueObj.toString());
+                    if (value != null && value == 0.0) {
+                        isAlert = false;
+                        message = "An toàn";
+                    }
+                }
+            } else {
+                value = parseDouble(payload);
+                if (value != null) {
+                    if (value == 0.0) {
+                        isAlert = false;
+                        message = "Bình thường (Đã an toàn)";
+                    } else if (value == 1.0) {
+                        isAlert = true;
+                        message = "Cảnh báo: Phát hiện sự cố!";
+                    }
+                }
+            }
+
+            SensorData saved = service.saveAlert(sensorId, isAlert, message, value);
+            if (saved != null) {
+                System.out.println(">>> MQTT: Alert saved - sensor=" + sensorId
+                        + " isAlert=" + isAlert
+                        + " message=" + message
+                        + (value != null ? " value=" + value : ""));
+            } else {
+                System.err.println(">>> MQTT: Alert save failed - sensor " + sensorId + " not found");
+            }
+        } catch (Exception ex) {
+            System.err.println(">>> MQTT: Alert parse error sensor=" + sensorId + " - " + ex.getMessage());
+        }
     }
 
     private Long parseId(String text, String type) {

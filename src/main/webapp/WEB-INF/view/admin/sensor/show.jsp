@@ -45,7 +45,7 @@
                                                     <th>ID</th>
                                                     <th>Tên cảm biến</th>
                                                     <th>Loại cảm biến</th>
-                                                    <th>Ngưỡng cảnh báo</th>
+
                                                     <th>Trạng thái</th>
                                                     <th>Phòng</th>
                                                     <th>Action</th>
@@ -57,7 +57,7 @@
                                                         <th>${sensor.id}</th>
                                                         <td>${sensor.name}</td>
                                                         <td>${sensor.type}</td>
-                                                        <td>${sensor.threshold}</td>
+
                                                         <td>${sensor.status}</td>
                                                         <td>${sensor.room.name}</td>
                                                         <td>

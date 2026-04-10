@@ -48,7 +48,7 @@
                                                     <li class="list-group-item">ID: ${sensor.id}</li>
                                                     <li class="list-group-item">Tên cảm biến: ${sensor.name}</li>
                                                     <li class="list-group-item">Loại cảm biến: ${sensor.type}</li>
-                                                    <li class="list-group-item">Ngưỡng cảnh báo: ${sensor.threshold}</li>
+
                                                     <li class="list-group-item">Trạng thái: ${sensor.status}</li>
                                                     <li class="list-group-item">Phòng: ${sensor.room.name}</li>
                                                 </ul>

@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -35,10 +34,7 @@ public class Sensor {
     @NotEmpty(message = "Loại cảm biến không được để trống")
     private String type;
 
-    
-    @NotNull
-    @Min(value = 1, message = "Ngưỡng cảnh báo phải lớn hơn hoặc bằng 1")
-    private double threshold;
+
 
 
     @NotNull
@@ -54,9 +50,6 @@ public class Sensor {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-
-    @OneToMany(mappedBy = "sensor")
-    private List<Alert> alerts;
 
     @Transient
     private List<SensorData> latestData;
@@ -77,14 +70,6 @@ public class Sensor {
     }
 
 
-    public List<Alert> getAlerts() {
-        return alerts;
-    }
-
-
-    public void setAlerts(List<Alert> alerts) {
-        this.alerts = alerts;
-    }
 
 
     public List<SensorData> getLatestData() {
@@ -115,12 +100,7 @@ public class Sensor {
     public void setName(String name) {
         this.name = name;
     }
-    public double getThreshold() {
-        return threshold;
-    }
-    public void setThreshold(double threshold) {
-        this.threshold = threshold;
-    }
+
     public String getStatus() {
         return status;
     }
@@ -130,7 +110,7 @@ public class Sensor {
     
     @Override
     public String toString() {
-        return "Sensor [id=" + id + ", name=" + name + ", type=" + type + ", threshold=" + threshold + ", status="
+        return "Sensor [id=" + id + ", name=" + name + ", type=" + type + ", status="
                 + status + ", room=" + room + "]";
     }
     public Room getRoom() {

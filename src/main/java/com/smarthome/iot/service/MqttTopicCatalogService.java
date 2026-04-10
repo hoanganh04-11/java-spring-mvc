@@ -54,7 +54,7 @@ public class MqttTopicCatalogService {
                         "esp32->server",
                         sensorAlertTopic,
                         "smarthome/sensor/201/alert",
-                        "{\"message\":\"Gia tri vuot nguong\"} or {\"value\":70,\"threshold\":60}",
+                        "{\"message\":\"Nhiệt độ quá mức\"} or 1 (Alert) or 0 (Safe)",
                         "Canh bao vuot nguong",
                         1,
                         false));

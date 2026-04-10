@@ -81,14 +81,7 @@
                                                     </form:select>
                                                 </div>
 
-                                                <div class="mb-3 col-12 col-md-6">
-                                                    <c:set var="errorThreshold">
-                                                        <form:errors path="threshold" cssClass="invalid-feedback" />
-                                                    </c:set>
-                                                    <label class="form-label">Ngưỡng cảnh báo:</label>
-                                                    <form:input type="number" class="form-control ${not empty errorThreshold ? 'is-invalid' : ''}" path="threshold" />
-                                                    ${errorThreshold}
-                                                </div>
+
                                                 
                                                     <button type="submit" class="btn btn-primary">Tạo mới</button>
                                                     <a href="/admin/sensor" class="btn btn-secondary mt-2">Quay lại</a>

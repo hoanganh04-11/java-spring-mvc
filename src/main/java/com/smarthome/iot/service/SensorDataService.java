@@ -52,4 +52,37 @@ public class SensorDataService {
     public List<SensorData> getAllDataBySensor(Long sensorId) {
         return this.sensorDataRepository.findBySensorIdOrderByRecordedAtDesc(sensorId);
     }
+
+    /**
+     * Lưu bản tin cảnh báo vượt ngưỡng từ ESP32.
+     * Tái sử dụng bảng sensor_data với cờ isAlert.
+     */
+    public SensorData saveAlert(Long sensorId, boolean isAlert, String message, Double value) {
+        Sensor sensor = this.sensorRepository.findById(sensorId).orElse(null);
+        if (sensor == null) {
+            return null;
+        }
+
+        SensorData data = new SensorData();
+        data.setSensor(sensor);
+        data.setValue(value);
+        data.setAlert(isAlert);
+        data.setAlertMessage(message);
+
+        return this.sensorDataRepository.save(data);
+    }
+
+    /**
+     * Lấy tất cả cảnh báo, mới nhất trước
+     */
+    public List<SensorData> getAllAlerts() {
+        return this.sensorDataRepository.findByIsAlertTrueOrderByRecordedAtDesc();
+    }
+
+    /**
+     * Lấy cảnh báo theo sensor
+     */
+    public List<SensorData> getAlertsBySensor(Long sensorId) {
+        return this.sensorDataRepository.findBySensorIdAndIsAlertTrueOrderByRecordedAtDesc(sensorId);
+    }
 }

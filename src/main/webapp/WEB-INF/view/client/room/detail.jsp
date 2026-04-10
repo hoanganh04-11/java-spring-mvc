@@ -103,19 +103,25 @@
                                 <h5 class="mb-0 fw-bold">
                                     <i class="bi bi-cpu text-success me-2"></i> ${sensor.name}
                                 </h5>
-                                <span class="badge ${sensor.status == 'ACTIVE' ? 'bg-success-light text-success' : 'bg-light text-muted'} rounded-pill px-3 py-2">
-                                    ${sensor.status == 'ACTIVE' ? 'Hoạt động' : 'Đang tắt'}
-                                </span>
+                                
+                                <c:choose>
+                                    <c:when test="${not empty sensor.latestData and sensor.latestData[0].alert}">
+                                        <span class="badge bg-danger rounded-pill px-3 py-2 blink_me">
+                                            <i class="bi bi-exclamation-triangle-fill me-1"></i> ${sensor.latestData[0].alertMessage}
+                                        </span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="badge ${sensor.status == 'ACTIVE' ? 'bg-success-light text-success' : 'bg-light text-muted'} rounded-pill px-3 py-2">
+                                            ${sensor.status == 'ACTIVE' ? 'Hoạt động' : 'Đang tắt'}
+                                        </span>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <div class="card-body p-4">
                                 <div class="row mb-4">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <p class="text-muted small mb-1">Loại cảm biến</p>
                                         <span class="badge bg-info-light text-info rounded-pill px-3">${sensor.type}</span>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <p class="text-muted small mb-1">Ngưỡng báo động</p>
-                                        <p class="fw-bold mb-0 text-dark">${sensor.threshold != null ? sensor.threshold : '---'}</p>
                                     </div>
                                 </div>
 
@@ -229,6 +235,16 @@
 
     .device-card:hover {
         transform: scale(1.02);
+    }
+    
+    .blink_me {
+        animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
     }
 </style>
 

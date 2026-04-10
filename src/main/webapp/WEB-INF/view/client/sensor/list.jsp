@@ -48,14 +48,9 @@
 
                                 <div class="bg-light rounded-4 p-3 mb-3">
                                     <div class="row text-center">
-                                        <div class="col-6 border-end">
+                                        <div class="col-12">
                                             <p class="text-muted small mb-1">Loại</p>
                                             <span class="fw-bold text-dark">${sensor.type}</span>
-                                        </div>
-                                        <div class="col-6">
-                                            <p class="text-muted small mb-1">Ngưỡng</p>
-                                            <span class="fw-bold text-dark">${sensor.threshold != null ?
-                                                sensor.threshold : '---'}</span>
                                         </div>
                                     </div>
                                 </div>

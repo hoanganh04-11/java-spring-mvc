@@ -62,10 +62,7 @@
                                                     </form:select>
                                                 </div>
 
-                                                <div class="mb-3">
-                                                    <label class="form-label">Ngưỡng cảnh báo:</label>
-                                                    <form:input type="double" class="form-control" path="threshold" />
-                                                </div>
+
 
 
                                                 <div class="mb-3 ">

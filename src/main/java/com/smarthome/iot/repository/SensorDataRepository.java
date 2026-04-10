@@ -19,4 +19,13 @@ public interface SensorDataRepository extends JpaRepository<SensorData, Long> {
 
     //Tổng bản ghi theo cảm biến
     long countBySensorId(Long sensorId);
+
+    // Lấy tất cả cảnh báo, mới nhất trước
+    List<SensorData> findByIsAlertTrueOrderByRecordedAtDesc();
+
+    // Lấy cảnh báo theo sensor, mới nhất trước
+    List<SensorData> findBySensorIdAndIsAlertTrueOrderByRecordedAtDesc(Long sensorId);
+
+    // Lấy 10 bản ghi dữ liệu thường (không phải cảnh báo) theo sensor
+    List<SensorData> findTop10BySensorIdAndIsAlertFalseOrderByRecordedAtDesc(Long sensorId);
 }

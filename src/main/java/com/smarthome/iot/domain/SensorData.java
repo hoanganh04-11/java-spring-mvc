@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Lob;
 
 @Entity
 @Table(name = "sensor_data")
@@ -27,6 +28,12 @@ public class SensorData {
 
     @Column(name = "recorded_at")
     private LocalDateTime recordedAt;
+
+    @Column(name = "is_alert", nullable = false)
+    private boolean isAlert = false;
+
+    @Column(name = "alert_message")
+    private String alertMessage;
 
     @ManyToOne
     @JoinColumn(name = "sensor_id")
@@ -68,6 +75,22 @@ public class SensorData {
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
+    }
+
+    public boolean isAlert() {
+        return isAlert;
+    }
+
+    public void setAlert(boolean isAlert) {
+        this.isAlert = isAlert;
+    }
+
+    public String getAlertMessage() {
+        return alertMessage;
+    }
+
+    public void setAlertMessage(String alertMessage) {
+        this.alertMessage = alertMessage;
     }
 
     @Override
