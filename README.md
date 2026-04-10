@@ -69,10 +69,11 @@ Dự án hiện tại tập trung vào nền tảng web:
 ## 📡 Kiến trúc hệ thống
 
 ```text
-[Cảm biến / Node IoT]
+[Cảm biến / Node IoT (STM32)]
         │
+        ├── LoRa
         ▼
-[ESP32/STM32 + LoRa Gateway]
+[ESP32 Gateway]
         │ (MQTT)
         ▼
 [Spring Boot Server]
@@ -220,7 +221,7 @@ HomeSmartIoT/
 │   │   │   ├── controller/
 │   │   │   │   ├── admin/
 │   │   │   │   ├── client/
-│   │   │   │   └── api/
+│   │   │   │ 
 │   │   │   ├── service/
 │   │   │   ├── repository/
 │   │   │   ├── domain/
@@ -242,12 +243,12 @@ HomeSmartIoT/
 
 > Phần firmware hiện không nằm trong repo này, nhưng backend đã sẵn sàng để tích hợp.
 
-### Node cảm biến (STM32/ESP32)
+### Node cảm biến (STM32)
 
 - Đọc dữ liệu cảm biến (nhiệt độ/độ ẩm/khí gas/ánh sáng...)
-- Publish dữ liệu lên MQTT topic theo chuẩn dự án
+- Truyền dữ liệu theo khung qua Gateway Esp32 bằng LoRa
 
-### Gateway (ESP32 + LoRa)
+### Gateway (ESP32)
 
 - Nhận dữ liệu từ node qua LoRa
 - Chuyển tiếp lên MQTT broker
@@ -337,7 +338,7 @@ refactor: tách service xử lý MQTT
 ## 🖼️ Giao diện trang chủ
 
 <p align="center">
-  <img src="./docs/images/homepage.png" width="800" alt="Home page"/>
+  <img src=".\src\main\webapp\resources\client\img" width="800" alt="Home page"/>
 </p>
 ```
 
