@@ -337,17 +337,14 @@ refactor: tách service xử lý MQTT
 ```md
 ## 🖼️ Giao diện trang chủ
 
-<p align="center">
-  <img src=".\src\main\webapp\resources\client\img" width="800" alt="Home page"/>
-</p>
+![Image 1](src/main/webapp/resources/client/img/homepage.png)
 ```
 
 ```md
 ## 🖼️ Giao diện admin
 
-<p align="center">
-  <img src="./docs/images/admin-dashboard.png" width="800" alt="Admin dashboard"/>
-</p>
+![Image 1](src/main/webapp/resources/client/img/admin.png)
+
 ```
 
 ---
