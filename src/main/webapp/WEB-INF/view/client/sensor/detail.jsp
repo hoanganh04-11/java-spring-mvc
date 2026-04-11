@@ -19,7 +19,7 @@
                     <h1 class="display-5 fw-bold text-dark m-0">
                         <i class="bi bi-cpu-fill text-success me-2"></i> ${sensor.name}
                     </h1>
-                    <p class="text-muted mt-2 mb-0">Theo dõi dữ liệu lịch sử và trạng thái thiết bị.</p>
+                    <p class="text-muted mt-2 mb-0">Theo dõi lịch sử dữ liệu và trạng thái thiết bị.</p>
                 </div>
                 <div class="col-md-4 text-md-end mt-3 mt-md-0">
                     <a href="/client/sensor-list" class="btn btn-outline-secondary rounded-pill px-4">
@@ -114,7 +114,7 @@
                     <!-- Alert Table Card -->
                     <div class="card border-0 shadow-sm rounded-4 mt-4 overflow-hidden">
                         <div class="card-header bg-danger text-white border-0 py-4 px-4 d-flex justify-content-between align-items-center">
-                            <h4 class="mb-0 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i>Lịch sử sự cố / Cảnh báo</h4>
+                            <h4 class="mb-0 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i>Lịch sử cảnh báo</h4>
                             <span class="badge bg-white text-danger rounded-pill px-3 py-2">${alertCount} sự cố</span>
                         </div>
                         <div class="card-body p-0">
